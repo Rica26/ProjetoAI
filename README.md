@@ -1,4 +1,4 @@
-AI do Sliding Tile Puzzle
+AI do Sliding Tile Puzzle- Ricardo Salema de Almeida n26344
 =============================================
 ![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/f7e5c6be-62e8-476b-a45e-8d2d265abd7f)
 
