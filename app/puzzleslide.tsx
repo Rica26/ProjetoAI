@@ -13,7 +13,7 @@ import {
   PuzzleState,
 } from "./puzzleLogic";
 import Piece from "./piece";
-import { bfsSolve, aStarSolve, idaStarSolve } from "./puzzlesolver";
+import { bfsSolve, aStarSolve } from "./puzzlesolver";
 
 interface PuzzleSlideProps {
   imageUri: string | null;
@@ -69,12 +69,9 @@ const PuzzleSlide: React.FC<PuzzleSlideProps> = ({ imageUri, gridRow, gridCol })
     if (selectedAlgorithm === "bfs") {
       solution = bfsSolve(shuffledPieces as PiecePosition[], initialPositions as PiecePosition[], gridRow, gridCol);
       console.log("bfs");
-    } else if (selectedAlgorithm === "aStar") {
+    } else {
       solution = aStarSolve(shuffledPieces as PiecePosition[], initialPositions as PiecePosition[], gridRow, gridCol);
       console.log("aStar");
-    } else {
-      solution = idaStarSolve(shuffledPieces as PiecePosition[], initialPositions as PiecePosition[], gridRow, gridCol);
-      console.log("idaStar");
     }
     const endTime = Date.now();
     const timeTaken = `${(endTime - startTime).toFixed(2)} ms`;
@@ -128,7 +125,6 @@ const PuzzleSlide: React.FC<PuzzleSlideProps> = ({ imageUri, gridRow, gridCol })
         items={[
           { label: "BFS", value: "bfs" },
           { label: "A*", value: "aStar" },
-          { label: "IDA*", value: "idaStar" },
         ]}
         placeholder={{ label: "Select Algorithm", value: null }}
         value={selectedAlgorithm}
@@ -139,8 +135,6 @@ const PuzzleSlide: React.FC<PuzzleSlideProps> = ({ imageUri, gridRow, gridCol })
           <Text>BFS: {executionTime}</Text>
         ) : selectedAlgorithm === "aStar" ? (
           <Text>A*: {executionTime}</Text>
-        ) : selectedAlgorithm === "idaStar" ? (
-          <Text>IDA*: {executionTime}</Text>
         ) : (
           <Text>Please select an algorithm</Text>
         )}
